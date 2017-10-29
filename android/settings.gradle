@@ -1,0 +1,3 @@
+rootProject.name = 'whisper_reactnative'
+
+include ':app'
