@@ -35,3 +35,13 @@ RUN git config --global alias.br branch
 RUN git config --global alias.ci commit
 RUN git config --global alias.st status
 
+#
+# Install watchman
+#
+RUN apt-get install -y libtool m4 automake pkg-config libssl-dev python-dev
+RUN git clone https://github.com/facebook/watchman.git
+RUN cd /watchman && git checkout v4.9.0
+RUN cd /watchman && ./autogen.sh
+RUN cd /watchman && ./configure
+RUN cd /watchman && make -j`nproc`
+RUN cd /watchman && make install -j`nproc`
