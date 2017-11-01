@@ -9,8 +9,15 @@
    git clone git@github.com:yarencheng/whisper_reactnative.git
    cd /workspace/whisper_reactnative
    ```
-2. Build and use docker container
-   * Build docker image
+2. Use docker container
+   
+   * Pull image
+   
+      ```
+      docker pull yarencheng/whisper_reactnative
+      ```
+   
+   * Build docker image(optional)
 
       ```
       docker build --tag whisper_reactnative .
