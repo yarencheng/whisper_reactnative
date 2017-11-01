@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/yarencheng/whisper_reactnative.svg?branch=master)](https://travis-ci.org/yarencheng/whisper_reactnative)
+
 ## How to Build - Android
 
 1. Clone this project
