@@ -1,11 +1,17 @@
 sudo: required
 
+env:
+  global:
+    - DOCKER_CACHE_FILE=${HOME}/docker/cache.tar.g
+
 language: java
 
 services:
   - docker
 
 before_install:
+  - if [ -f ${DOCKER_CACHE_FILE} ]; then gunzip -c ${DOCKER_CACHE_FILE} | docker load; fi
+  - docker pull $DOCKER_USERNAME/whisper_reactnative
   - docker run -idt --privileged -w `pwd` -v `pwd`:`pwd` --name whisper_reactnative $DOCKER_USERNAME/whisper_reactnative
 
 install:
@@ -15,3 +21,7 @@ script:
   - docker exec whisper_reactnative sh -c "npm test"
   - docker exec whisper_reactnative sh -c "npm run flow"
   - docker exec whisper_reactnative sh -c "cd android && ./gradlew testDebugUnitTest"
+
+after_script:
+  - mkdir -p $(dirname ${DOCKER_CACHE_FILE})
+  - docker save $(docker history -q whisper_reactnative | grep -v '<missing>') | gzip > ${DOCKER_CACHE_FILE}
