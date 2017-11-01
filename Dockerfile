@@ -29,7 +29,9 @@ RUN apt-get install -y oracle-java8-installer
 #
 # Download Android SDK
 #
-RUN wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip && unzip -d /android_sdk sdk-tools-linux-*.zip && rm sdk-tools-linux-*.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -o /android_sdk.zip && \
+    unzip -d /android_sdk -q /android_sdk.zip && \
+    rm /android_sdk.zip
 RUN echo y | /android_sdk/tools/bin/sdkmanager "add-ons;addon-google_apis-google-23"
 RUN echo y | /android_sdk/tools/bin/sdkmanager "platforms;android-23"
 RUN echo y | /android_sdk/tools/bin/sdkmanager "system-images;android-23;default;x86"
@@ -43,7 +45,9 @@ ENV PATH "${PATH}:${ANDROID_HOME}/platform-tools"
 #
 # Download ANdroid NDK
 #
-RUN wget http://dl.google.com/android/repository/android-ndk-r10e-linux-x86_64.zip && unzip -d /android_ndk android-ndk-r10e-linux-x86_64.zip && rm android-ndk-r10e-linux-x86_64.zip
+RUN curl http://dl.google.com/android/repository/android-ndk-r10e-linux-x86_64.zip -o /android_ndk.zip && \
+    unzip -d /android_ndk -q /android_ndk.zip && \
+    rm /android_ndk.zip
 ENV ANDROID_NDK "/android_ndk/android-ndk-r10e"
 
 #
