@@ -22,4 +22,4 @@ after_success:
 
 after_script:
   - mkdir -p $(dirname ${DOCKER_CACHE_FILE})
-  - docker save $(docker history -q $DOCKER_USERNAME/whisper_reactnative | grep -v '<missing>') | gzip -v -9 > ${DOCKER_CACHE_FILE}
+  - docker save $(docker history -q $DOCKER_USERNAME/whisper_reactnative | grep -v '<missing>') | gzip > ${DOCKER_CACHE_FILE}
