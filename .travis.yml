@@ -9,6 +9,10 @@ before_install:
   - docker build --tag whisper_reactnative .
   - docker run -idt --privileged -w `pwd` -v `pwd`:`pwd` --name whisper_reactnative whisper_reactnative
 
+install:
+  - docker exec whisper_reactnative npm update
+
 script:
-  - ls -l
-  - docker exec whisper_reactnative ls -l
+  - docker exec whisper_reactnative sh -c "npm test"
+  - docker exec whisper_reactnative sh -c "npm run flow"
+  - docker exec whisper_reactnative sh -c "cd android && ./gradlew testDebugUnitTest"
