@@ -30,7 +30,15 @@
       * ```-p 8081:8081``` expose port ```8081``` which is used later by ```react-native start```
       
       * ```-p 9099:9099``` expose port ```9099``` which is used later by ```nuclide-start-server```
-3. Build app-debug.apk
+
+3. Unit Test
+
+   ```
+   cd android
+   ./gradlew testDebugUnitTest
+   ```
+
+4. Build app-debug.apk
 
    * switch into docker container
    
