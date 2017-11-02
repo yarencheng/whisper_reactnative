@@ -6,9 +6,9 @@ services:
   - docker
 
 script:
-  - docker build --tag whisper_reactnative .
+  - docker build --tag whisper_reactnative:android.latest -f android.dockerfile .
 
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker tag whisper_reactnative $DOCKER_USERNAME/whisper_reactnative
-  - docker push $DOCKER_USERNAME/whisper_reactnative
+  - docker tag whisper_reactnative:android.latest $DOCKER_USERNAME/whisper_reactnative:android.latest
+  - docker push $DOCKER_USERNAME/whisper_reactnative:android.latest
