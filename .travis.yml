@@ -15,4 +15,5 @@ install:
 script:
   - npm test
   - npm run flow
+  - cd ios && xcodebuild -project whisper_reactnative.xcodeproj -scheme whisper_reactnative -sdk iphonesimulator11.1 clean test
   - cd ios && xcodebuild -project whisper_reactnative.xcodeproj -scheme whisper_reactnative -sdk iphonesimulator11.1 clean analyze
