@@ -6,7 +6,7 @@ services:
   - docker
 
 before_install:
-  - docker run -idt --privileged -w `pwd` -v `pwd`:`pwd` --name whisper_reactnative $DOCKER_USERNAME/whisper_reactnative
+  - docker run -idt --privileged -w `pwd` -v `pwd`:`pwd` --name whisper_reactnative $DOCKER_USERNAME/whisper_reactnative:android.latest
 
 install:
   - docker exec whisper_reactnative npm update
